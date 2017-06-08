@@ -1,11 +1,12 @@
-(ns url-matcher.patterns
+(ns url-match.patterns
   (:require [clojure.string :as str]))
 
-(def patterns-map
+(defonce patterns-map
   {:host #"(host)\((.+?)\);\s*"
    :path #"(path)\((.+?)\);\s*"
    :queryparam #"(queryparam)\((.+?)\);\s*"
-   :placeholder #"\?(\w+)"})
+   :placeholder #"\?(\w+)\s*"
+   :queryparam-key #"=\?*"})
 
 (defn- host-regexp [host]
   {:pre [(not-empty host)]}
@@ -22,7 +23,7 @@
   (map #(str "(?=.*" % ")") string))
 
 (defn parse-values [string]
-  (#(str "\\?.*" string ".+")))
+  (str "\\?.*" string ".+"))
 
 (defn- queryparams-regexp [query]
   (when (not-empty query)

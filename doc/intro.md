@@ -1,3 +1,3 @@
 # Introduction to url-matcher
 
-TODO: write [great documentation](http://jacobian.org/writing/what-to-write/)
+View readme to know how to use the tool.
